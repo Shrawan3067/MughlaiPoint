@@ -1,8 +1,9 @@
 import { o as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
+import { n as useMenuSelection } from "./menu-context-CGXQ0n5N.mjs";
 import { a as MapPin, c as Facebook, i as Menu, l as Bike, n as Soup, o as Leaf, r as Phone, s as Instagram, t as X } from "../_libs/lucide-react.mjs";
 import { t as motion } from "../_libs/motion.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-C7MpN_xS.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-qqiq9KTb.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function Logo() {
@@ -66,8 +67,15 @@ function Logo() {
 		})]
 	});
 }
-var WHATSAPP_URL = "https://wa.me/918360705978?text=Hi%20Mughlai%20Point%20Biryani,%20I%20want%20to%20place%20an%20order.";
+var PHONE_NUMBER = "918360705978";
 var PHONE_DISPLAY = "+91 83607 05978";
+function getWhatsAppUrl(selectedItem) {
+	const baseUrl = `https://wa.me/${PHONE_NUMBER}`;
+	const defaultMessage = "Hi Mughlai Point Biryani, I want to place an order.";
+	if (selectedItem) return `${baseUrl}?text=${`Hi Mughlai Point Biryani, I want ${encodeURIComponent(selectedItem)}`}`;
+	return `${baseUrl}?text=${encodeURIComponent(defaultMessage)}`;
+}
+var WHATSAPP_URL = getWhatsAppUrl(null);
 function WaIcon({ className = "h-5 w-5" }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("svg", {
 		viewBox: "0 0 24 24",
@@ -77,15 +85,16 @@ function WaIcon({ className = "h-5 w-5" }) {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("path", { d: "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.174.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.86.508 3.6 1.393 5.096L2 22l5.03-1.32A9.955 9.955 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" })
 	});
 }
-function WhatsAppButton({ size = "md", label = "Order on WhatsApp", className = "" }) {
+function WhatsAppButton({ size = "md", label = "Order on WhatsApp", className = "", selectedItem = null }) {
 	const sizes = {
 		sm: "px-4 py-2 text-xs",
 		md: "px-5 py-2.5 text-sm",
 		lg: "px-7 py-4 text-sm sm:text-base"
 	};
 	const iconSize = size === "lg" ? "h-5 w-5 sm:h-6 sm:w-6" : "h-4 w-4 sm:h-5 sm:w-5";
+	const whatsappUrl = getWhatsAppUrl(selectedItem);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(motion.a, {
-		href: WHATSAPP_URL,
+		href: whatsappUrl,
 		target: "_blank",
 		rel: "noopener noreferrer",
 		whileHover: { scale: 1.03 },
@@ -368,6 +377,7 @@ var items = [
 	}
 ];
 function MenuSection() {
+	const { selectedItem, setSelectedItem } = useMenuSelection();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		id: "menu",
 		className: "relative py-16 sm:py-20 lg:py-24",
@@ -428,7 +438,8 @@ function MenuSection() {
 						duration: .5,
 						delay: i % 4 * .06
 					},
-					className: "card-luxury card-luxury-hover overflow-hidden p-4",
+					onClick: () => setSelectedItem(item.name),
+					className: `card-luxury card-luxury-hover overflow-hidden p-4 cursor-pointer transition-all ${selectedItem === item.name ? "ring-2 ring-gold ring-offset-2 ring-offset-[#0B0A08]" : ""}`,
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 						className: "overflow-hidden rounded-xl",
 						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
@@ -462,6 +473,7 @@ function MenuSection() {
 	});
 }
 function CtaBanner() {
+	const { selectedItem } = useMenuSelection();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		id: "about",
 		className: "px-5 pb-16 sm:px-8 sm:pb-20",
@@ -501,7 +513,8 @@ function CtaBanner() {
 					})] })]
 				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WhatsAppButton, {
 					size: "lg",
-					label: "Order on WhatsApp"
+					label: "Order on WhatsApp",
+					selectedItem
 				})]
 			})
 		})
@@ -591,6 +604,7 @@ function Footer() {
 	});
 }
 function Index() {
+	const { selectedItem } = useMenuSelection();
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "relative min-h-screen bg-background text-foreground",
 		children: [
@@ -605,7 +619,8 @@ function Index() {
 				className: "fixed bottom-4 right-4 z-40 lg:hidden",
 				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WhatsAppButton, {
 					size: "md",
-					label: "Order"
+					label: "Order",
+					selectedItem
 				})
 			})
 		]

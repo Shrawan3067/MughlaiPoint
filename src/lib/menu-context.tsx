@@ -20,7 +20,8 @@ export function MenuProvider({ children }: { children: ReactNode }) {
 export function useMenuSelection() {
   const context = useContext(MenuContext);
   if (!context) {
-    throw new Error("useMenuSelection must be used within a MenuProvider");
+    console.error("useMenuSelection must be used within a MenuProvider");
+    return { selectedItem: null, setSelectedItem: () => {} };
   }
   return context;
 }

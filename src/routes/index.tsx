@@ -5,7 +5,6 @@ import { MenuSection } from "@/components/Menu";
 import { CtaBanner } from "@/components/CtaBanner";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { MenuProvider } from "@/lib/menu-context";
 import { useMenuSelection } from "@/lib/menu-context";
 
 export const Route = createFileRoute("/")({
@@ -34,14 +33,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return (
-    <MenuProvider>
-      <IndexContent />
-    </MenuProvider>
-  );
-}
-
-function IndexContent() {
   const { selectedItem } = useMenuSelection();
 
   return (
