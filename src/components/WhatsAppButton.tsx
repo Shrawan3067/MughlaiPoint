@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { WHATSAPP_URL } from "@/lib/whatsapp";
+import { getWhatsAppUrl } from "@/lib/whatsapp";
 
 function WaIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -13,10 +13,12 @@ export function WhatsAppButton({
   size = "md",
   label = "Order on WhatsApp",
   className = "",
+  selectedItem = null,
 }: {
   size?: "sm" | "md" | "lg";
   label?: string;
   className?: string;
+  selectedItem?: string | null;
 }) {
   const sizes = {
     sm: "px-4 py-2 text-xs",
@@ -24,10 +26,11 @@ export function WhatsAppButton({
     lg: "px-7 py-4 text-sm sm:text-base",
   } as const;
   const iconSize = size === "lg" ? "h-5 w-5 sm:h-6 sm:w-6" : "h-4 w-4 sm:h-5 sm:w-5";
+  const whatsappUrl = getWhatsAppUrl(selectedItem);
 
   return (
     <motion.a
-      href={WHATSAPP_URL}
+      href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       whileHover={{ scale: 1.03 }}

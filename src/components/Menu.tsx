@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useMenuSelection } from "@/lib/menu-context";
 import chicken from "@/assets/chicken-biryani.jpg";
 import mutton from "@/assets/mutton-biryani.jpg";
 import veg from "@/assets/veg-biryani.jpg";
@@ -67,6 +68,8 @@ const items: Item[] = [
 ];
 
 export function MenuSection() {
+  const { selectedItem, setSelectedItem } = useMenuSelection();
+
   return (
     <section id="menu" className="relative py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -100,7 +103,12 @@ export function MenuSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (i % 4) * 0.06 }}
-              className="card-luxury card-luxury-hover overflow-hidden p-4"
+              onClick={() => setSelectedItem(item.name)}
+              className={`card-luxury card-luxury-hover overflow-hidden p-4 cursor-pointer transition-all ${
+                selectedItem === item.name
+                  ? "ring-2 ring-gold ring-offset-2 ring-offset-[#0B0A08]"
+                  : ""
+              }`}
             >
               <div className="overflow-hidden rounded-xl">
                 <img

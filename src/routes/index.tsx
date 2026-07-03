@@ -5,6 +5,8 @@ import { MenuSection } from "@/components/Menu";
 import { CtaBanner } from "@/components/CtaBanner";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { MenuProvider } from "@/lib/menu-context";
+import { useMenuSelection } from "@/lib/menu-context";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -33,6 +35,16 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
+    <MenuProvider>
+      <IndexContent />
+    </MenuProvider>
+  );
+}
+
+function IndexContent() {
+  const { selectedItem } = useMenuSelection();
+
+  return (
     <div className="relative min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
@@ -44,7 +56,7 @@ function Index() {
 
       {/* Sticky mobile WhatsApp */}
       <div className="fixed bottom-4 right-4 z-40 lg:hidden">
-        <WhatsAppButton size="md" label="Order" />
+        <WhatsAppButton size="md" label="Order" selectedItem={selectedItem} />
       </div>
     </div>
   );

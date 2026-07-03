@@ -1,3 +1,16 @@
-export const WHATSAPP_URL =
-  "https://wa.me/918360705978?text=Hi%20Mughlai%20Point%20Biryani,%20I%20want%20to%20place%20an%20order.";
+export const PHONE_NUMBER = "918360705978";
 export const PHONE_DISPLAY = "+91 83607 05978";
+
+export function getWhatsAppUrl(selectedItem: string | null): string {
+  const baseUrl = `https://wa.me/${PHONE_NUMBER}`;
+  const defaultMessage = "Hi Mughlai Point Biryani, I want to place an order.";
+  
+  if (selectedItem) {
+    const message = `Hi Mughlai Point Biryani, I want ${encodeURIComponent(selectedItem)}`;
+    return `${baseUrl}?text=${message}`;
+  }
+  
+  return `${baseUrl}?text=${encodeURIComponent(defaultMessage)}`;
+}
+
+export const WHATSAPP_URL = getWhatsAppUrl(null);

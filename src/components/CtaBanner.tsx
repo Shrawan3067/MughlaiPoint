@@ -1,7 +1,10 @@
 import { motion } from "motion/react";
 import { WaIcon, WhatsAppButton } from "./WhatsAppButton";
+import { useMenuSelection } from "@/lib/menu-context";
 
 export function CtaBanner() {
+  const { selectedItem } = useMenuSelection();
+
   return (
     <section id="about" className="px-5 pb-16 sm:px-8 sm:pb-20">
       <motion.div
@@ -34,7 +37,7 @@ export function CtaBanner() {
               </p>
             </div>
           </div>
-          <WhatsAppButton size="lg" label="Order on WhatsApp" />
+          <WhatsAppButton size="lg" label="Order on WhatsApp" selectedItem={selectedItem} />
         </div>
       </motion.div>
     </section>
