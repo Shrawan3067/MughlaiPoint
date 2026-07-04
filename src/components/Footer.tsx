@@ -1,7 +1,7 @@
 import { Phone, MapPin, Instagram, Facebook } from "lucide-react";
 import { Logo } from "./Logo";
 import { WaIcon } from "./WhatsAppButton";
-import { PHONE_DISPLAY, WHATSAPP_URL } from "@/lib/whatsapp";
+import { PHONE_DISPLAY, getWhatsAppUrl } from "@/lib/whatsapp";
 
 export function Footer() {
   return (
@@ -41,7 +41,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href={WHATSAPP_URL}
+                href={getWhatsAppUrl(null)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-gold"

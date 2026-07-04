@@ -1,6 +1,7 @@
 import { Soup, Leaf, Bike } from "lucide-react";
 import heroImg from "@/assets/hero-biryani.jpg";
 import { WhatsAppButton } from "./WhatsAppButton";
+import { useMenuSelection } from "@/lib/menu-context";
 
 const features = [
   { icon: Soup, title: "Authentic", subtitle: "Mughlai Taste" },
@@ -9,6 +10,8 @@ const features = [
 ];
 
 export function Hero() {
+  const { selectedItem } = useMenuSelection();
+
   return (
     <section
       id="home"
@@ -61,7 +64,7 @@ export function Hero() {
           </div>
 
           <div className="mt-8 sm:mt-10">
-            <WhatsAppButton size="lg" label="Order on WhatsApp" />
+            <WhatsAppButton size="lg" label="Order on WhatsApp" selectedItem={selectedItem} />
             <p className="mt-3 text-xs text-[color:var(--muted-foreground)]">
               Chat with us on WhatsApp to place your order
             </p>

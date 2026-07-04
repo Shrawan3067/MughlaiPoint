@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { WhatsAppButton } from "./WhatsAppButton";
+import { useMenuSelection } from "@/lib/menu-context";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -14,6 +15,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#home");
+  const { selectedItem } = useMenuSelection();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -57,7 +59,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <WhatsAppButton size="md" />
+          <WhatsAppButton size="md" selectedItem={selectedItem} />
         </div>
 
         <button
@@ -87,7 +89,7 @@ export function Navbar() {
               </a>
             ))}
             <div className="pt-2">
-              <WhatsAppButton size="md" className="w-full" />
+              <WhatsAppButton size="md" className="w-full" selectedItem={selectedItem} />
             </div>
           </div>
         </div>
