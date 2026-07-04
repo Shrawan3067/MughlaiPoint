@@ -24,18 +24,18 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 ${
         scrolled
           ? "backdrop-blur-xl bg-background/80 border-b border-border"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 sm:py-5">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4 lg:px-8 lg:py-5">
         <a href="#home" aria-label="Mughlai Point Biryani home">
           <Logo />
         </a>
 
-        <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 sm:gap-8 lg:flex" aria-label="Primary">
           {links.map((l) => {
             const isActive = active === l.href;
             return (
@@ -43,7 +43,7 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setActive(l.href)}
-                className={`relative text-sm font-medium transition-colors ${
+                className={`relative text-xs sm:text-sm font-medium ${
                   isActive ? "text-white" : "text-white/80 hover:text-white"
                 }`}
               >
@@ -66,13 +66,13 @@ export function Navbar() {
           aria-label="Toggle menu"
           aria-expanded={open}
         >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {open ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
         </button>
       </div>
 
       {open && (
         <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl">
-          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-4">
+          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3 sm:px-5 sm:py-4">
             {links.map((l) => (
               <a
                 key={l.href}

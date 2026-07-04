@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Soup, Leaf, Bike } from "lucide-react";
 import heroImg from "@/assets/hero-biryani.jpg";
 import { WhatsAppButton } from "./WhatsAppButton";
@@ -13,7 +12,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden pt-28 pb-16 sm:pt-32 lg:pt-36 lg:pb-24"
+      className="relative overflow-hidden pt-20 pb-12 sm:pt-28 sm:pb-16 lg:pt-32 lg:pb-20"
     >
       {/* Background vignette */}
       <div
@@ -24,38 +23,33 @@ export function Hero() {
         }}
       />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-8 px-4 sm:px-6 lg:px-8 lg:grid-cols-2 lg:gap-12">
         {/* Left */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative z-10"
-        >
-          <div className="mb-6 flex items-center gap-3 text-gold">
+        <div className="relative z-10">
+          <div className="mb-4 sm:mb-6 flex items-center gap-3 text-gold">
             <span className="h-px w-8 bg-gold/60" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.24em]">
+            <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.24em]">
               Authentic Flavors. Royal Experience.
             </span>
             <span className="rotate-45 inline-block h-1.5 w-1.5 bg-gold/70" />
           </div>
 
-          <h1 className="font-display text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-[5rem]">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] xl:text-[5rem]">
             <span className="text-white">Mughlai Point</span>
             <br />
             <span className="text-gold italic">Biryani</span>
           </h1>
 
-          <p className="mt-6 max-w-md text-base leading-relaxed text-[color:var(--muted-foreground)] sm:text-lg">
+          <p className="mt-4 sm:mt-6 max-w-md text-sm sm:text-base lg:text-lg leading-relaxed text-[color:var(--muted-foreground)]">
             Experience the rich, royal taste of authentic Mughlai Biryani
             delivered fresh to your doorstep.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-8 sm:gap-10">
+          <div className="mt-6 sm:mt-8 flex flex-wrap gap-6 sm:gap-8 lg:gap-10">
             {features.map((f) => (
               <div key={f.title} className="flex flex-col items-start">
-                <div className="mb-2 flex h-10 w-10 items-center justify-center text-gold">
-                  <f.icon className="h-7 w-7" strokeWidth={1.5} />
+                <div className="mb-2 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center text-gold">
+                  <f.icon className="h-5 w-5 sm:h-7 sm:w-7" strokeWidth={1.5} />
                 </div>
                 <p className="text-xs font-medium leading-snug text-white/90">
                   {f.title}
@@ -66,21 +60,16 @@ export function Hero() {
             ))}
           </div>
 
-          <div className="mt-10">
+          <div className="mt-8 sm:mt-10">
             <WhatsAppButton size="lg" label="Order on WhatsApp" />
             <p className="mt-3 text-xs text-[color:var(--muted-foreground)]">
               Chat with us on WhatsApp to place your order
             </p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          className="relative"
-        >
+        <div className="relative">
           <div className="relative aspect-square w-full overflow-hidden">
             <img
               src={heroImg}
@@ -98,7 +87,7 @@ export function Hero() {
               }}
             />
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

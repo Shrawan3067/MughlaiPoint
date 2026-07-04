@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { useMenuSelection } from "@/lib/menu-context";
 import chicken from "@/assets/chicken-biryani.jpg";
 import mutton from "@/assets/mutton-biryani.jpg";
@@ -71,15 +70,9 @@ export function MenuSection() {
   const { selectedItem, setSelectedItem } = useMenuSelection();
 
   return (
-    <section id="menu" className="relative py-16 sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-2xl text-center"
-        >
+    <section id="menu" className="relative py-12 sm:py-16 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
           <div className="flex items-center justify-center gap-3 text-gold">
             <span className="h-px w-8 bg-gold/60" />
             <span className="text-[11px] font-semibold uppercase tracking-[0.24em]">
@@ -87,24 +80,20 @@ export function MenuSection() {
             </span>
             <span className="h-px w-8 bg-gold/60" />
           </div>
-          <h2 className="mt-4 font-display text-4xl font-bold text-white sm:text-5xl">
+          <h2 className="mt-4 font-display text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
             Biryani &amp; More
           </h2>
           <p className="mt-3 text-sm text-[color:var(--muted-foreground)] sm:text-base">
             Handcrafted with traditional recipes and the finest ingredients.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item, i) => (
-            <motion.article
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((item) => (
+            <article
               key={item.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: (i % 4) * 0.06 }}
               onClick={() => setSelectedItem(item.name)}
-              className={`card-luxury card-luxury-hover overflow-hidden p-4 cursor-pointer transition-all ${
+              className={`card-luxury card-luxury-hover overflow-hidden p-3 sm:p-4 cursor-pointer transition-all ${
                 selectedItem === item.name
                   ? "ring-2 ring-gold ring-offset-2 ring-offset-[#0B0A08]"
                   : ""
@@ -117,21 +106,21 @@ export function MenuSection() {
                   width={640}
                   height={640}
                   loading="lazy"
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="aspect-[4/3] w-full object-cover"
                 />
               </div>
-              <div className="mt-4 text-center">
-                <h3 className="font-display text-lg font-semibold text-white">
+              <div className="mt-3 sm:mt-4 text-center">
+                <h3 className="font-display text-base sm:text-lg font-semibold text-white">
                   {item.name}
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-[color:var(--muted-foreground)]">
                   {item.desc}
                 </p>
-                <p className="mt-3 text-lg font-semibold text-gold">
+                <p className="mt-2 sm:mt-3 text-base sm:text-lg font-semibold text-gold">
                   {item.price}
                 </p>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>
