@@ -3,7 +3,7 @@ export const PHONE_DISPLAY = "+91 83607 05978";
 
 export function getWhatsAppUrl(selectedItem: string | null): string {
   const baseUrl = `https://wa.me/${PHONE_NUMBER}`;
-  const defaultMessage = "HI, I'd like to order two chicken biryanis";
+  const defaultMessage = "Hi, I'd like to order two chicken biryanis";
   
   if (selectedItem) {
     const message = `Hi Mughlai Point Biryani, I want ${encodeURIComponent(selectedItem)}`;
